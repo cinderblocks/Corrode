@@ -1,5 +1,11 @@
-bin/
-obj/
-.vs/
-
+*.user
+*.userprefs
 *.suo
+*.cache
+*.pfx
+
+[Oo]bj/
+[Bb]in/
+packages/
+.idea/
+.vs/
