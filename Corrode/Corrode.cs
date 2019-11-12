@@ -1,8 +1,21 @@
-﻿///////////////////////////////////////////////////////////////////////////
-//  Copyright (C) Wizardry and Steamworks 2013 - License: GNU GPLv3      //
-//  Please see: http://www.gnu.org/licenses/gpl.html for legal details,  //
-//  rights of fair usage, the disclaimer and warranty conditions.        //
-///////////////////////////////////////////////////////////////////////////
+﻿/**
+ * Copyright(C) 2013-2015 Wizardry and Steamworks
+ * Copyright(C) 2019 Sjofn LLC
+ * All rights reserved.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.If not, see<https://www.gnu.org/licenses/>.
+ */
 
 #region
 
@@ -324,9 +337,6 @@ namespace Corrode
             return true;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Serialize an RLV message to a string.
         /// </summary>
@@ -358,9 +368,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Combine multiple paths.
         /// </summary>
@@ -374,9 +381,6 @@ namespace Corrode
                 : Path.Combine(Path.Combine(paths[0], paths[1]), wasPathCombine(paths.Skip(2).ToArray()));
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Retrives all the attributes of type T from an enumeration.
         /// </summary>
@@ -387,9 +391,6 @@ namespace Corrode
                 .AsParallel().Select(o => wasGetAttributeFromEnumValue<T>((Enum) o.GetValue(null)));
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Retrieves an attribute of type T from an enumeration.
         /// </summary>
@@ -402,9 +403,6 @@ namespace Corrode
                 .SingleOrDefault();
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Returns all the field descriptions of an enumeration.
         /// </summary>
@@ -415,9 +413,6 @@ namespace Corrode
                 .AsParallel().Select(o => wasGetDescriptionFromEnumValue((Enum) o.GetValue(null)));
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Get the description from an enumeration value.
         /// </summary>
@@ -432,9 +427,6 @@ namespace Corrode
             return attribute != null ? attribute.Description : string.Empty;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Get enumeration value from its description.
         /// </summary>
@@ -451,9 +443,6 @@ namespace Corrode
             return field != null ? (T) field.Field.GetRawConstantValue() : default(T);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Get the description of structure member.
         /// </summary>
@@ -631,9 +620,6 @@ namespace Corrode
             Client.Inventory.Remove(removeItems.ToList(), null);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Swaps two integers passed by reference using XOR.
         /// </summary>
@@ -646,9 +632,6 @@ namespace Corrode
             q ^= p;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Enumerates the fields of an object along with the child objects,
         ///     provided that all child objects are part of a specified namespace.
@@ -674,9 +657,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Enumerates the properties of an object along with the child objects,
         ///     provided that all child objects are part of a specified namespace.
@@ -705,9 +685,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     This is a wrapper for both FieldInfo and PropertyInfo SetValue.
         /// </summary>
@@ -732,9 +709,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     This is a wrapper for both FieldInfo and PropertyInfo GetValue.
         /// </summary>
@@ -760,9 +734,6 @@ namespace Corrode
             return null;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     The function gets the value from FieldInfo or PropertyInfo.
         /// </summary>
@@ -940,9 +911,6 @@ namespace Corrode
             yield return @string;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Sets the value of FieldInfo or PropertyInfo.
         /// </summary>
@@ -1028,9 +996,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Converts Linden item permissions to a formatted string:
         ///     CDEMVT - Copy, Damage, Export, Modify, Move, Transfer
@@ -1116,9 +1081,6 @@ namespace Corrode
             return x.ToString();
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Converts a formatted string to item permissions:
         ///     CDEMVT - Copy, Damage, Export, Modify, Move, Transfer
@@ -1181,9 +1143,6 @@ namespace Corrode
                 segment(permissions.Substring(18, 6)), segment(permissions.Substring(24, 6)));
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Determines whether an agent has a set of powers for a group.
         /// </summary>
@@ -1219,9 +1178,6 @@ namespace Corrode
             return hasPowers;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Attempts to join the group chat for a given group.
         /// </summary>
@@ -1252,9 +1208,6 @@ namespace Corrode
             return succeeded;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Determines whether an agent referenced by an UUID is in a group
         ///     referenced by an UUID.
@@ -1343,9 +1296,6 @@ namespace Corrode
                          !(o.NotificationMask & notification).Equals(0));
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Fetches a group.
         /// </summary>
@@ -1377,9 +1327,6 @@ namespace Corrode
             return true;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Get the parcel of a simulator given a position.
         /// </summary>
@@ -1427,9 +1374,6 @@ namespace Corrode
             return true;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Determines whether a vector falls within a parcel.
         /// </summary>
@@ -1442,9 +1386,6 @@ namespace Corrode
                    position.Y >= parcel.AABBMin.Y && position.Y <= parcel.AABBMax.Y;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Find a named primitive in range (whether attachment or in-world).
         /// </summary>
@@ -2047,9 +1988,6 @@ namespace Corrode
             return Doc;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Fetches all the avatars in-range.
         /// </summary>
@@ -2088,9 +2026,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Fetches all the primitives in-range.
         /// </summary>
@@ -2129,9 +2064,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Updates a set of primitives by scanning their properties.
         /// </summary>
@@ -2194,9 +2126,6 @@ namespace Corrode
             return true;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Updates a set of avatars by scanning their profile data.
         /// </summary>
@@ -2273,9 +2202,6 @@ namespace Corrode
                                 o.Groups.Count.Equals(0)));
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Requests the UUIDs of all the current groups.
         /// </summary>
@@ -2344,9 +2270,6 @@ namespace Corrode
             return succeeded;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Get all worn attachments.
         /// </summary>
@@ -2392,9 +2315,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Gets the inventory wearables that are currently being worn.
         /// </summary>
@@ -2433,9 +2353,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// ///
         /// <summary>
         ///     Fetches items by searching the inventory starting with an inventory
@@ -2469,9 +2386,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// ///
         /// <summary>
         ///     Fetches items and their full path from the inventory starting with
@@ -2517,9 +2431,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Gets all the items from an inventory folder and returns the items.
         /// </summary>
@@ -18654,9 +18565,6 @@ namespace Corrode
             return result;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Gets the values from structures as strings.
         /// </summary>
@@ -18702,9 +18610,6 @@ namespace Corrode
             return result.SelectMany(o => o);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Takes as input a CSV data values and sets the corresponding
         ///     structure's fields or properties from the CSV data.
@@ -18743,9 +18648,7 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
+
         /// <summary>
         ///     Sends a post request to an URL with set key-value pairs.
         /// </summary>
@@ -18825,9 +18728,6 @@ namespace Corrode
                 Configuration.MAXIMUM_NOTIFICATION_THREADS);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>URI unescapes an RFC3986 URI escaped string</summary>
         /// <param name="data">a string to unescape</param>
         /// <returns>the resulting string</returns>
@@ -18839,9 +18739,6 @@ namespace Corrode
                 .ToArray());
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>RFC3986 URI Escapes a string</summary>
         /// <param name="data">a string to escape</param>
         /// <returns>an RFC3986 escaped string</returns>
@@ -18853,9 +18750,6 @@ namespace Corrode
                 .ToArray());
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2015 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>RFC1738 URL Escapes a string</summary>
         /// <param name="data">a string to escape</param>
         /// <returns>an RFC1738 escaped string</returns>
@@ -18864,9 +18758,6 @@ namespace Corrode
             return HttpUtility.UrlEncode(data);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2015 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>RFC1738 URL Unescape a string</summary>
         /// <param name="data">a string to unescape</param>
         /// <returns>an RFC1738 unescaped string</returns>
@@ -18875,9 +18766,6 @@ namespace Corrode
             return HttpUtility.UrlDecode(data);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Converts a list of string to a comma-separated values string.
         /// </summary>
@@ -18913,9 +18801,6 @@ namespace Corrode
             return string.Join(",", csv.ToArray());
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Converts a comma-separated list of values to a list of strings.
         /// </summary>
@@ -23456,9 +23341,6 @@ namespace Corrode
             [Description("beam")] BEAM
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2013 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     An alarm class similar to the UNIX alarm with the added benefit
         ///     of a decaying timer that tracks the time between rescheduling.
@@ -24233,9 +24115,6 @@ namespace Corrode
 
         #region KEY-VALUE DATA
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Returns the value of a key from a key-value data string.
         /// </summary>
@@ -24258,9 +24137,6 @@ namespace Corrode
                 .FirstOrDefault();
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Returns a key-value data string with a key set to a given value.
         /// </summary>
@@ -24290,9 +24166,6 @@ namespace Corrode
             return string.Join("&", output.ToArray());
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Deletes a key-value pair from a string referenced by a key.
         /// </summary>
@@ -24315,9 +24188,6 @@ namespace Corrode
                 .ToArray());
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Decodes key-value pair data to a dictionary.
         /// </summary>
@@ -24338,9 +24208,6 @@ namespace Corrode
                 .ToDictionary(o => o.Key, p => p.First().v);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Serialises a dictionary to key-value data.
         /// </summary>
@@ -24351,9 +24218,6 @@ namespace Corrode
             return string.Join("&", data.AsParallel().Select(o => string.Join("=", o.Key, o.Value)));
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>Escapes a dictionary's keys and values for sending as POST data.</summary>
         /// <param name="data">A dictionary containing keys and values to be escaped</param>
         private static Dictionary<string, string> wasKeyValueEscape(Dictionary<string, string> data)
@@ -24365,9 +24229,6 @@ namespace Corrode
 
         #region CRYPTOGRAPHY
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Gets an array element at a given modulo index.
         /// </summary>
@@ -24386,9 +24247,6 @@ namespace Corrode
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Gets a sub-array from an array.
         /// </summary>
@@ -24406,9 +24264,6 @@ namespace Corrode
             return result;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Delete a sub-array and return the result.
         /// </summary>
@@ -24427,9 +24282,6 @@ namespace Corrode
             return result;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Concatenate multiple arrays.
         /// </summary>
@@ -24453,9 +24305,6 @@ namespace Corrode
             return result;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Permutes an array in reverse a given number of times.
         /// </summary>
@@ -24472,9 +24321,6 @@ namespace Corrode
             return wasReversePermuteArrayElements(slice, --times);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Permutes an array forward a given number of times.
         /// </summary>
@@ -24491,9 +24337,6 @@ namespace Corrode
             return wasForwardPermuteArrayElements(slice, --times);
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Encrypt or decrypt a message given a set of rotors, plugs and a reflector.
         /// </summary>
@@ -24720,9 +24563,6 @@ namespace Corrode
             return result.ToString();
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Expand the VIGENRE key to the length of the input.
         /// </summary>
@@ -24750,9 +24590,6 @@ namespace Corrode
             return exp_key;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Encrypt using VIGENERE.
         /// </summary>
@@ -24792,9 +24629,6 @@ namespace Corrode
             return result;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2014 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Decrypt using VIGENERE.
         /// </summary>
@@ -24835,9 +24669,6 @@ namespace Corrode
             return result;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //  Copyright (C) Wizardry and Steamworks 2015 - License: GNU GPLv3      //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     An implementation of the ATBASH cypher for latin alphabets.
         /// </summary>
@@ -24873,9 +24704,6 @@ namespace Corrode
 
         #region NAME AND UUID RESOLVERS
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2015 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Tries to build an UUID out of the data string.
         /// </summary>
@@ -24895,9 +24723,6 @@ namespace Corrode
             return @UUID;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2014 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Updates the current balance by requesting it from the grid.
         /// </summary>
@@ -24922,9 +24747,6 @@ namespace Corrode
             return true;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Resolves a group name to an UUID by using the directory search.
         /// </summary>
@@ -25000,9 +24822,6 @@ namespace Corrode
             return succeeded;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Resolves a group name to an UUID by using the directory search.
         /// </summary>
@@ -25073,9 +24892,6 @@ namespace Corrode
             return succeeded;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Resolves an agent name to an agent UUID by searching the directory
         ///     services.
@@ -25163,9 +24979,6 @@ namespace Corrode
             return succeeded;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Resolves an agent UUID to an agent name.
         /// </summary>
@@ -25242,9 +25055,6 @@ namespace Corrode
             return succeeded;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// ///
         /// <summary>
         ///     Resolves a role name to a role UUID.
@@ -25285,9 +25095,6 @@ namespace Corrode
             return true;
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        //    Copyright (C) 2013 Wizardry and Steamworks - License: GNU GPLv3    //
-        ///////////////////////////////////////////////////////////////////////////
         /// <summary>
         ///     Resolves a role name to a role UUID.
         /// </summary>
@@ -25332,19 +25139,13 @@ namespace Corrode
 
         #region RLV STRUCTURES
 
-        /// <summary>
-        ///     Holds all the active RLV rules.
-        /// </summary>
+        /// <summary>Holds all the active RLV rules.</summary>
         private static readonly HashSet<RLVRule> RLVRules = new HashSet<RLVRule>();
 
-        /// <summary>
-        ///     Locks down RLV for linear concurrent access.
-        /// </summary>
+        /// <summary>Locks down RLV for linear concurrent access.</summary>
         private static readonly object RLVRulesLock = new object();
 
-        /// <summary>
-        ///     RLV Wearables.
-        /// </summary>
+        /// <summary>RLV Wearables</summary>
         private static readonly List<RLVWearable> RLVWearables = new List<RLVWearable>
         {
             new RLVWearable {Name = @"gloves", WearableType = WearableType.Gloves},
@@ -25365,9 +25166,7 @@ namespace Corrode
             new RLVWearable {Name = @"physics", WearableType = WearableType.Physics}
         };
 
-        /// <summary>
-        ///     RLV Attachments.
-        /// </summary>
+        /// <summary>RLV Attachments.</summary>
         private static readonly List<RLVAttachment> RLVAttachments = new List<RLVAttachment>
         {
             new RLVAttachment {Name = @"none", AttachmentPoint = AttachmentPoint.Default},
@@ -25413,9 +25212,7 @@ namespace Corrode
             new RLVAttachment {Name = @"root", AttachmentPoint = AttachmentPoint.Root}
         };
 
-        /// <summary>
-        ///     RLV attachment structure.
-        /// </summary>
+        /// <summary>RLV attachment structure.</summary>
         private struct RLVAttachment
         {
             public AttachmentPoint AttachmentPoint;
@@ -25467,18 +25264,14 @@ namespace Corrode
             public string Param;
         }
 
-        /// <summary>
-        ///     RLV wearable structure.
-        /// </summary>
+        /// <summary>RLV wearable structure.</summary>
         private struct RLVWearable
         {
             public string Name;
             public WearableType WearableType;
         }
 
-        /// <summary>
-        ///     Structure for RLV constants.
-        /// </summary>
+        /// <summary>Structure for RLV constants.</summary>
         private struct RLV_CONSTANTS
         {
             public const string COMMAND_OPERATOR = @"@";
@@ -25501,9 +25294,7 @@ namespace Corrode
             public const string REM = @"rem";
             public const string STATUS_SEPARATOR = @";";
 
-            /// <summary>
-            ///     Regex used to match RLV commands.
-            /// </summary>
+            /// <summary>Regex used to match RLV commands.</summary>
             public static readonly Regex RLVRegEx = new Regex(@"(?<behaviour>[^:=]+)(:(?<option>[^=]*))?=(?<param>\w+)",
                 RegexOptions.Compiled);
         }
@@ -25522,9 +25313,7 @@ namespace Corrode
             CTRL_SHUTDOWN_EVENT
         }
 
-        /// <summary>
-        ///     Import console handler for windows.
-        /// </summary>
+        /// <summary>Import console handler for windows.</summary>
         [DllImport("Kernel32.dll", CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool SetConsoleCtrlHandler(Corrode.EventHandler handler,
