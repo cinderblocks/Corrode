@@ -506,7 +506,7 @@ namespace Corrode
                 if (realItem == null) return;
                 Client.Appearance.Attach(realItem, point, replace);
                 AddLink(realItem,
-                    Client.Inventory.Store[Client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder)] as
+                    Client.Inventory.Store[Client.Inventory.FindFolderForType(FolderType.CurrentOutfit)] as
                         InventoryFolder);
             }
         }
@@ -518,7 +518,7 @@ namespace Corrode
                 InventoryItem realItem = ResolveItemLink(item);
                 if (realItem == null) return;
                 RemoveLink(realItem,
-                    Client.Inventory.Store[Client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder)] as
+                    Client.Inventory.Store[Client.Inventory.FindFolderForType(FolderType.CurrentOutfit)] as
                         InventoryFolder);
                 Client.Appearance.Detach(realItem);
             }
@@ -532,7 +532,7 @@ namespace Corrode
                 if (realItem == null) return;
                 Client.Appearance.AddToOutfit(realItem, replace);
                 AddLink(realItem,
-                    Client.Inventory.Store[Client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder)] as
+                    Client.Inventory.Store[Client.Inventory.FindFolderForType(FolderType.CurrentOutfit)] as
                         InventoryFolder);
             }
         }
@@ -545,13 +545,13 @@ namespace Corrode
                 if (realItem == null) return;
                 Client.Appearance.RemoveFromOutfit(realItem);
                 InventoryItem link = GetCurrentOutfitFolderLinks(
-                    Client.Inventory.Store[Client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder)] as
+                    Client.Inventory.Store[Client.Inventory.FindFolderForType(FolderType.CurrentOutfit)] as
                         InventoryFolder)
                     .AsParallel()
                     .FirstOrDefault(o => o.AssetType.Equals(AssetType.Link) && o.Name.Equals(item.Name));
                 if (link == null) return;
                 RemoveLink(link,
-                    Client.Inventory.Store[Client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder)] as
+                    Client.Inventory.Store[Client.Inventory.FindFolderForType(FolderType.CurrentOutfit)] as
                         InventoryFolder);
             }
         }
@@ -590,7 +590,7 @@ namespace Corrode
             string description = (item.InventoryType.Equals(InventoryType.Wearable) && !IsBodyPart(item))
                 ? string.Format("@{0}{1:00}", (int) ((InventoryWearable) item).WearableType, 0)
                 : string.Empty;
-            Client.Inventory.CreateLink(Client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder), item.UUID,
+            Client.Inventory.CreateLink(Client.Inventory.FindFolderForType(FolderType.CurrentOutfit), item.UUID,
                 item.Name, description, AssetType.Link,
                 item.InventoryType, UUID.Random(), (success, newItem) =>
                 {
@@ -4243,7 +4243,7 @@ namespace Corrode
                 {
                     Client.Inventory.Move(
                         inventoryBaseItem,
-                        Client.Inventory.Store.Items[Client.Inventory.FindFolderForType(AssetType.TrashFolder)].Data as
+                        Client.Inventory.Store.Items[Client.Inventory.FindFolderForType(FolderType.Trash)].Data as
                             InventoryFolder);
                 }
             }
@@ -9633,11 +9633,11 @@ namespace Corrode
                             {
                                 case AssetType.Folder:
                                     Client.Inventory.MoveFolder(o.UUID,
-                                        Client.Inventory.FindFolderForType(AssetType.TrashFolder));
+                                        Client.Inventory.FindFolderForType(FolderType.Trash));
                                     break;
                                 default:
                                     Client.Inventory.MoveItem(o.UUID,
-                                        Client.Inventory.FindFolderForType(AssetType.TrashFolder));
+                                        Client.Inventory.FindFolderForType(FolderType.Trash));
                                     break;
                             }
                         });
@@ -15937,7 +15937,7 @@ namespace Corrode
                         }
                         // Now remove the current outfit items.
                         Client.Inventory.Store.GetContents(
-                            Client.Inventory.FindFolderForType(AssetType.CurrentOutfitFolder)).FindAll(
+                            Client.Inventory.FindFolderForType(FolderType.CurrentOutfit)).FindAll(
                                 o => CanBeWorn(o) && ((InventoryItem) o).AssetType.Equals(AssetType.Link))
                             .ForEach(p =>
                             {
@@ -16968,11 +16968,11 @@ namespace Corrode
                                 {
                                     case true:
                                         Client.Inventory.MoveFolder(item.UUID,
-                                            Client.Inventory.FindFolderForType(AssetType.TrashFolder));
+                                            Client.Inventory.FindFolderForType(FolderType.Trash));
                                         break;
                                     default:
                                         Client.Inventory.MoveItem(item.UUID,
-                                            Client.Inventory.FindFolderForType(AssetType.TrashFolder));
+                                            Client.Inventory.FindFolderForType(FolderType.Trash));
                                         break;
                                 }
                                 UpdateInventoryRecursive.Invoke(Client.Inventory.Store.RootFolder);
