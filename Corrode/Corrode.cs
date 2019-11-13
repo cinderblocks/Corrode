@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
@@ -31,6 +32,7 @@ using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -2333,13 +2335,12 @@ namespace Corrode
                     if (!wearableType.Equals(WearableType.Invalid))
                     {
                         foreach (
-                            KeyValuePair<WearableType, AppearanceManager.WearableData> wearable in
+                            var wearable in
                                 Client.Appearance.GetWearables()
-                                    .AsParallel().Where(o => o.Value.ItemID.Equals(inventoryItem.UUID)))
+                                    .AsParallel().Where(o => o.ItemID.Equals(inventoryItem.UUID)))
                         {
                             yield return
-                                new KeyValuePair<AppearanceManager.WearableData, WearableType>(wearable.Value,
-                                    wearable.Key);
+                                new KeyValuePair<AppearanceManager.WearableData, WearableType>(wearable, wearable.WearableType);
                         }
                     }
                     yield break;
@@ -2802,7 +2803,7 @@ namespace Corrode
                     CallbackQueueElement callbackQueueElement;
                     lock (CallbackQueueLock)
                     {
-                        callbackQueueElement = CallbackQueue.Dequeue();
+                         CallbackQueue.TryDequeue(out callbackQueueElement);
                     }
                     try
                     {
@@ -2833,7 +2834,7 @@ namespace Corrode
                     NotificationQueueElement notificationQueueElement;
                     lock (NotificationQueueLock)
                     {
-                        notificationQueueElement = NotificationQueue.Dequeue();
+                         NotificationQueue.TryDequeue(out notificationQueueElement);
                     }
                     try
                     {
@@ -23498,13 +23499,13 @@ namespace Corrode
 
         private static readonly object InventoryOffersLock = new object();
 
-        private static readonly BlockingQueue<CallbackQueueElement> CallbackQueue =
-            new BlockingQueue<CallbackQueueElement>();
+        private static readonly ConcurrentQueue<CallbackQueueElement> CallbackQueue =
+            new ConcurrentQueue<CallbackQueueElement>();
 
         private static readonly object CallbackQueueLock = new object();
 
-        private static readonly BlockingQueue<NotificationQueueElement> NotificationQueue =
-            new BlockingQueue<NotificationQueueElement>();
+        private static readonly ConcurrentQueue<NotificationQueueElement> NotificationQueue =
+            new ConcurrentQueue<NotificationQueueElement>();
 
         private static readonly object NotificationQueueLock = new object();
         private static readonly HashSet<GroupInvite> GroupInvites = new HashSet<GroupInvite>();

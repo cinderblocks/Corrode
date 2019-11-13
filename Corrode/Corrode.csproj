@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Corrode</RootNamespace>
     <AssemblyName>Corrode</AssemblyName>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <StartupObject>Corrode.Corrode</StartupObject>
     <TargetZone>LocalIntranet</TargetZone>
     <GenerateManifests>false</GenerateManifests>
@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
