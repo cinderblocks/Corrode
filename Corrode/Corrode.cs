@@ -4400,13 +4400,38 @@ namespace Corrode
                         }
                     }) {IsBackground = true, Priority = ThreadPriority.BelowNormal}.Start();
                     // Set the camera on the avatar.
-                    Client.Self.Movement.Camera.LookAt(
-                        Client.Self.SimPosition,
-                        Client.Self.SimPosition
-                        );
+                    Client.Self.Movement.Camera.LookAt(Client.Self.SimPosition, Client.Self.SimPosition);
                     break;
                 case LoginStatus.Failed:
-                    Feedback(wasGetDescriptionFromEnumValue(ConsoleError.LOGIN_FAILED), e.FailReason);
+                    string reason;
+                    switch (e.FailReason)
+                    {
+                        case "god":
+                            reason = "Grid is down";
+                            break;
+                        case "key":
+                            reason = "Bad username or password";
+                            break;
+                        case "presence":
+                            reason = "Server is still logging us out";
+                            break;
+                        case "disabled":
+                            reason = "This account has been banned";
+                            break;
+                        case "timed out":
+                            reason = "Login request has timed out";
+                            break;
+                        case "no connection":
+                            reason = "Cannot obtain connection for login";
+                            break;
+                        case "bad response":
+                            reason = "Login request returned bad response";
+                            break;
+                        default:
+                            reason = "Unknown error";
+                            break;
+                    }
+                    Feedback(wasGetDescriptionFromEnumValue(ConsoleError.LOGIN_FAILED), reason);
                     ConnectionSemaphores['l'].Set();
                     break;
             }
