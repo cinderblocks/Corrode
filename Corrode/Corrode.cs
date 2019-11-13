@@ -2790,21 +2790,21 @@ namespace Corrode
                 }) {IsBackground = true, Priority = ThreadPriority.BelowNormal};
                 HTTPListenerThread.Start();
             }
+
+            cancellationTokenSource = new CancellationTokenSource();
+
             // Start the callback thread to send callbacks.
             Thread CallbackThread = new Thread(() =>
             {
+                var token = cancellationTokenSource?.Token ?? throw new NullReferenceException();
                 do
                 {
                     Thread.Sleep(Configuration.CALLBACK_THROTTLE);
-                    lock (CallbackQueueLock)
-                    {
-                        if (CallbackQueue.Count.Equals(0)) continue;
-                    }
+                    CallbacksAvailable.Wait(token);
+
                     CallbackQueueElement callbackQueueElement;
-                    lock (CallbackQueueLock)
-                    {
-                         CallbackQueue.TryDequeue(out callbackQueueElement);
-                    }
+                    if (!CallbackQueue.TryDequeue(out callbackQueueElement)) { break; }
+
                     try
                     {
                         if (!callbackQueueElement.Equals(default(CallbackQueueElement)))
@@ -2824,18 +2824,15 @@ namespace Corrode
             CallbackThread.Start();
             Thread NotificationThread = new Thread(() =>
             {
+                var token = cancellationTokenSource?.Token ?? throw new NullReferenceException();
                 do
                 {
                     Thread.Sleep(Configuration.NOTIFICATION_THROTTLE);
-                    lock (NotificationQueueLock)
-                    {
-                        if (NotificationQueue.Count.Equals(0)) continue;
-                    }
+                    NotificationsAvailable.Wait(token);
+
                     NotificationQueueElement notificationQueueElement;
-                    lock (NotificationQueueLock)
-                    {
-                         NotificationQueue.TryDequeue(out notificationQueueElement);
-                    }
+                    if (!NotificationQueue.TryDequeue(out notificationQueueElement)) { break; }
+
                     try
                     {
                         if (!notificationQueueElement.Equals(default(NotificationQueueElement)))
@@ -4050,22 +4047,17 @@ namespace Corrode
                             }
                             break;
                     }
-                    lock (NotificationQueueLock)
+                    if (NotificationQueue.Count < Configuration.NOTIFICATION_QUEUE_LENGTH)
                     {
-                        if (NotificationQueue.Count < Configuration.NOTIFICATION_QUEUE_LENGTH)
-                        {
-                            Parallel.ForEach(
-                                o.NotificationDestination.AsParallel()
-                                    .Where(p => p.Key.Equals(notification))
-                                    .SelectMany(p => p.Value), p =>
-                                    {
-                                        NotificationQueue.Enqueue(new NotificationQueueElement
-                                        {
-                                            URL = p,
-                                            message = wasKeyValueEscape(notificationData)
-                                        });
-                                    });
-                        }
+                        Parallel.ForEach(
+                            o.NotificationDestination.AsParallel()
+                                .Where(p => p.Key.Equals(notification))
+                                .SelectMany(p => p.Value), p =>
+                            {
+                                NotificationQueue.Enqueue(new NotificationQueueElement
+                                { URL = p, message = wasKeyValueEscape(notificationData) });
+                                NotificationsAvailable.Release();
+                            });
                     }
                 });
             }
@@ -6009,18 +6001,14 @@ namespace Corrode
             // do not send a callback if the callback queue is saturated
             if (CallbackQueue.Count >= Configuration.CALLBACK_QUEUE_LENGTH) return result;
             // send callback if registered
-            string url =
-                wasInput(wasKeyValueGet(wasOutput(wasGetDescriptionFromEnumValue(ScriptKeys.CALLBACK)), message));
+            string url = wasInput(wasKeyValueGet(wasOutput(
+                wasGetDescriptionFromEnumValue(ScriptKeys.CALLBACK)), message));
             // if no url was provided, do not send the callback
             if (string.IsNullOrEmpty(url)) return result;
-            lock (CallbackQueueLock)
-            {
-                CallbackQueue.Enqueue(new CallbackQueueElement
-                {
-                    URL = url,
-                    message = wasKeyValueEscape(result)
-                });
-            }
+
+            CallbackQueue.Enqueue(new CallbackQueueElement { URL = url, message = wasKeyValueEscape(result) });
+            CallbacksAvailable.Release();
+
             return result;
         }
 
@@ -23499,15 +23487,17 @@ namespace Corrode
 
         private static readonly object InventoryOffersLock = new object();
 
+        private CancellationTokenSource cancellationTokenSource = null;
+
         private static readonly ConcurrentQueue<CallbackQueueElement> CallbackQueue =
             new ConcurrentQueue<CallbackQueueElement>();
-
-        private static readonly object CallbackQueueLock = new object();
+        private static readonly SemaphoreSlim CallbacksAvailable = new SemaphoreSlim(0);
 
         private static readonly ConcurrentQueue<NotificationQueueElement> NotificationQueue =
             new ConcurrentQueue<NotificationQueueElement>();
+        private static readonly SemaphoreSlim NotificationsAvailable = new SemaphoreSlim(0);
 
-        private static readonly object NotificationQueueLock = new object();
+
         private static readonly HashSet<GroupInvite> GroupInvites = new HashSet<GroupInvite>();
         private static readonly object GroupInviteLock = new object();
         private static readonly HashSet<TeleportLure> TeleportLures = new HashSet<TeleportLure>();
