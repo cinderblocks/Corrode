@@ -15,4 +15,9 @@
     <ProjectView>ShowAllFiles</ProjectView>
     <ErrorReportUrlHistory />
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Corrode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
