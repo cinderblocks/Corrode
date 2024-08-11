@@ -1,6 +1,6 @@
-﻿/**
- * Copyright(C) 2013 Wizardry and Steamworks
- * Copyright(C) 2019 Sjofn LLC
+/*
+ * Copyright(C) 2013-2015 Wizardry and Steamworks
+ * Copyright(C) 2019-2024 Sjofn LLC
  * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -17,27 +17,23 @@
  * along with this program.If not, see<https://www.gnu.org/licenses/>.
  */
 
-#region
-
-using System.ComponentModel;
-using System.Configuration.Install;
-
-#endregion
+using System;
+using OpenMetaverse;
 
 namespace Corrode
 {
-    [RunInstaller(true)]
-    public partial class ProjectInstaller : Installer
+    public partial class Corrode
     {
-        public ProjectInstaller()
+        /// <summary>
+        ///     An event for the group membership notification.
+        /// </summary>
+        private class GroupMembershipEventArgs : EventArgs
         {
-            InitializeComponent();
-            // Set the service name.
-            string serviceName = string.IsNullOrEmpty(Corrode.InstalledServiceName)
-                ? CorrodeInstaller.ServiceName
-                : Corrode.InstalledServiceName;
-            CorrodeInstaller.ServiceName = serviceName;
-            CorrodeInstaller.DisplayName = serviceName;
+            public Action Action;
+            public string AgentName;
+            public UUID AgentUUID;
         }
+        
+        
     }
 }

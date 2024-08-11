@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Corrode</RootNamespace>
     <AssemblyName>Corrode</AssemblyName>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <StartupObject>Corrode.Corrode</StartupObject>
     <TargetZone>LocalIntranet</TargetZone>
     <GenerateManifests>false</GenerateManifests>
@@ -31,7 +31,7 @@
     <Product>Corrode</Product>
     <NeutralLanguage>en</NeutralLanguage>
     <Description>Virtual World Scripted Agent</Description>
-    <Copyright>Copyright (c)2019 Sjofn LLC</Copyright>
+    <Copyright>Copyright (c)2019-2024 Sjofn LLC</Copyright>
     <Deterministic>false</Deterministic>
     <AssemblyVersion>0.0.1.*</AssemblyVersion>
     <FileVersion>0.0.1.0</FileVersion>
@@ -39,7 +39,6 @@
     <Version>0.0.1.0</Version>
     <Authors>Cinder Roxley</Authors>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageLicenseExpression></PackageLicenseExpression>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -48,38 +47,21 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AIMLBot" Version="2.0.0" />
-    <PackageReference Include="Core.System.Configuration.Install" Version="1.0.1" />
-    <PackageReference Include="LibreMetaverse" Version="1.4.3.33" />
-    <PackageReference Include="LibreMetaverse.Rendering.Meshmerizer" Version="1.4.3.33" />
-    <PackageReference Include="LibreMetaverse.StructuredData" Version="1.4.3.33" />
-    <PackageReference Include="LibreMetaverse.Types" Version="1.4.3.33" />
-    <PackageReference Include="System.Diagnostics.EventLog" Version="4.6.0" />
+    <PackageReference Include="AIMLbot-Radegast" Version="2.5.1.1" />
+    <PackageReference Include="Core.System.Configuration.Install" Version="1.1.0" />
+    <PackageReference Include="LibreMetaverse" Version="2.1.2.688" />
+    <PackageReference Include="LibreMetaverse.Rendering.Meshmerizer" Version="2.1.2.688" />
+    <PackageReference Include="LibreMetaverse.StructuredData" Version="2.1.2.688" />
+    <PackageReference Include="LibreMetaverse.Types" Version="2.1.2.688" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="8.0.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 </Project>

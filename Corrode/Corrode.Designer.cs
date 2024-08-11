@@ -1,6 +1,6 @@
 ﻿/**
  * Copyright(C) 2013 Wizardry and Steamworks
- * Copyright(C) 2019 Sjofn LLC
+ * Copyright(C) 2019-2024 Sjofn LLC
  * All rights reserved.
  * 
  * This program is free software: you can redistribute it and/or modify
