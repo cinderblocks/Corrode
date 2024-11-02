@@ -32,7 +32,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 using AIMLbot;
-using CSJ2K;
+using CoreJ2K;
 using SkiaSharp;
 using OpenMetaverse;
 using OpenMetaverse.Assets;
@@ -5152,7 +5152,9 @@ namespace Corrode
                                         {
                                             using (var bmp = SKBitmap.Decode(data))
                                             {
-                                                data = J2kImage.ToBytes(J2kImage.CreateEncodableSource(bmp));
+                                                var p = J2kImage.GetDefaultDecoderParameterList();
+                                                p["file_format"] = "off";
+                                                data = J2kImage.ToBytes(bmp, p);
                                             }
                                         }
                                         break;

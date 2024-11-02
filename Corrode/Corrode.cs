@@ -39,7 +39,7 @@ using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
 using AIMLbot;
-using CSJ2K;
+using CoreJ2K;
 using SkiaSharp;
 using OpenMetaverse;
 using OpenMetaverse.Rendering;
